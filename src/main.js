@@ -31,18 +31,38 @@ function generatePlane() {
   );
 
 
-  // vertice position randomization
-  const { array } = planeMesh.geometry.attributes.position;
+// vertice  position randomization
+const { array } = planeMesh.geometry.attributes.position;
+const randomValues = []
 
-  for (let i = 0; i < array.length; i += 3) {
-    const x = array[i];
-    const y = array[i + 1];
-    const z = array[i + 2];
+for (let i = 0; i < array.length; i++ ) {
 
-    array[i + 2] = z + Math.random();
 
-    // console.log(array[i])
-  }
+  if( i % 3 === 0 ) {
+
+  
+  const x = array[i];
+  const y = array[i + 1];
+  const z = array[i + 2];
+
+  array[i] = x + (Math.random() - 0.5) * 3;;
+  array[i + 1] = y + (Math.random() - 0.5) * 3;
+  array[i + 2] = z + (Math.random() - 0.5) * 9;
+}
+  // console.log(array[i])
+
+  randomValues.push(Math.random() * Math.PI * 2)
+}
+
+
+planeMesh.geometry.attributes.position.randomValues = randomValues
+
+
+planeMesh.geometry.attributes.position.originalPosition = planeMesh.geometry.attributes.position.array
+
+
+
+
 
   const colors = []
 
@@ -96,54 +116,19 @@ const planeMaterial = new THREE.MeshPhongMaterial({
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(planeMesh);
 
+generatePlane()
+
 // console.log(planeMesh.geometry.attributes.position.array);
 
 
-// vertice  position randomization
-const { array } = planeMesh.geometry.attributes.position;
-const randomValues = []
-
-for (let i = 0; i < array.length; i++ ) {
 
 
-  if( i % 3 === 0 ) {
 
-  
-  const x = array[i];
-  const y = array[i + 1];
-  const z = array[i + 2];
-
-  array[i] = x + (Math.random() - 0.5) * 3;;
-  array[i + 1] = y + (Math.random() - 0.5) * 3;
-  array[i + 2] = z + (Math.random() - 0.5) * 10;
-}
-  // console.log(array[i])
-
-  randomValues.push(Math.random() - 0.5)
-}
-
-
-planeMesh.geometry.attributes.position.randomValues = randomValues
-
-
-planeMesh.geometry.attributes.position.originalPosition = planeMesh.geometry.attributes.position.array
-
-
-console.log(planeMesh.geometry.attributes.position)
 
 // planeMesh.geometry.attributes.position
 
 // color attribute addition
-const colors = []
 
-for(let i =0; i < planeMesh.geometry.attributes.position.count; i++) {
-  // console.log(i)
-  colors.push(0,.19,.4)
-}
-
-// console.log(colors)
-
-planeMesh.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 1, 1);
@@ -177,10 +162,10 @@ function animate() {
   for (let i = 0; i < array.length; i += 3) {
     
     // x
-    array[i] = originalPosition[i] + Math.cos(frame + randomValues[i] ) * 0.003
+    array[i] = originalPosition[i] + Math.cos(frame + randomValues[i] ) * 0.01
 
     // Y
-    array[i + 1] = originalPosition[i + 1] + Math.sin(frame + randomValues[i + 1] ) * 0.003
+    array[i + 1] = originalPosition[i + 1] + Math.sin(frame + randomValues[i + 1] ) * 0.001
 
 
     // if(i === 0) {

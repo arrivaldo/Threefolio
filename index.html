@@ -6,18 +6,56 @@
     <link rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Threefolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-      body {
-        margin: 0;
-      }
+  
+      html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing:  antialiased;
+  overflow: hidden;
+
+}
+
       canvas {
         background: black;
       }
 
+      .font-exo {
+        font-family: 'Exo 2', sans-serif;
+        font-weight: 700;
+
+      }
+
+      .font-space-mono {
+        font-family: "Space Mono", monospace;
+
+      }
+      /*
+      .absolute {
+        position: absolute;
+      }
+      .text-white {
+        color: white;
+      } */
+
     </style>
   </head>
   <body>
-    <div id="app"></div>
+      <div style="top: 50%; transform: translate(-50%, -50%); left: 50%;" class="absolute text-white text-center">
+        <h1 class="font-space-mono text-sm uppercase tracking-wide">Erick Bárcena</h1>
+        <p class="font-exo text-4xl mt-2">ONE WITH AN EVERLASTING DESIRE FOR THE UNKNOWN & UNTOLD</p>
+        <a 
+        href="https://engineerick-portfolio.vercel.app/"
+        target="_blank" 
+        class="border px-4 mt-8 py-2  rounded-lg text-sm font-space-mono uppercase hover:bg-white hover:text-gray-800 inline-block">
+        View Work</a>
+      </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
